@@ -1,0 +1,88 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
+-- --------------------------------------------------
+-- Date Created: 04/04/2014 00:19:17
+-- Generated from EDMX file
+-- --------------------------------------------------
+
+SET QUOTED_IDENTIFIER OFF;
+GO
+USE [CustomersDataBase];
+GO
+IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
+GO
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- --------------------------------------------------
+
+IF OBJECT_ID(N'[dbo].[Customer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Customer];
+GO
+IF OBJECT_ID(N'[dbo].[CustomerHistory]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CustomerHistory];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'Customer'
+CREATE TABLE [dbo].[Customer] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(255)  NOT NULL,
+    [Gender] tinyint  NOT NULL,
+    [DateOfBirth] datetime  NOT NULL,
+    [Category] tinyint  NOT NULL,
+    [HouseNumber] nvarchar(50)  NOT NULL,
+    [AddressLineOne] nvarchar(255)  NOT NULL,
+    [State] nvarchar(50)  NOT NULL,
+    [Country] nvarchar(50)  NOT NULL
+);
+GO
+
+-- Creating table 'CustomerHistory'
+CREATE TABLE [dbo].[CustomerHistory] (
+    [Id] int  NOT NULL,
+    [Name] nvarchar(255)  NOT NULL,
+    [Gender] tinyint  NOT NULL,
+    [DateOfBirth] datetime  NOT NULL,
+    [Category] tinyint  NOT NULL,
+    [HouseNumber] nvarchar(50)  NOT NULL,
+    [AddressLineOne] nvarchar(255)  NOT NULL,
+    [State] nvarchar(50)  NOT NULL,
+    [Country] nvarchar(50)  NOT NULL,
+    [ModificationType] tinyint  NOT NULL,
+    [ChangedOn] nvarchar(255)  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'Customer'
+ALTER TABLE [dbo].[Customer]
+ADD CONSTRAINT [PK_Customer]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [ChangedOn] in table 'CustomerHistory'
+ALTER TABLE [dbo].[CustomerHistory]
+ADD CONSTRAINT [PK_CustomerHistory]
+    PRIMARY KEY CLUSTERED ([ChangedOn] ASC);
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

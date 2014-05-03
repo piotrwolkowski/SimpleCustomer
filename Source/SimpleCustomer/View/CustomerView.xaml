@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="SimpleCustomer.View.CustomerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90*" />
+            <ColumnDefinition Width="188*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.ColumnSpan="2" Text="Customer Details" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+
+        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5"  Text="Name :" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="5,5,15,5" VerticalContentAlignment="Center"
+                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self},Path=(Validation.Errors)[0].ErrorContent}" 
+                 Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true }" />
+
+        <TextBlock Grid.Column="0" Grid.Row="2" Margin="5"  Text="Gender :" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <ComboBox Name="comboBoxGender" Grid.Column="1" Grid.Row="2" Margin="5,5,15,5" SelectedItem="{Binding Gender}" VerticalContentAlignment="Center" />
+
+        <TextBlock Grid.Column="0" Grid.Row="3" Margin="5"  Text="Category :" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <ComboBox Name="comboBoxCategory" Grid.Column="1" Grid.Row="3" Margin="5,5,15,5" SelectedItem="{Binding Category}" VerticalContentAlignment="Center" />
+
+        <TextBlock Grid.Column="0" Grid.Row="4" Margin="5"  Text="Date of Birth :" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <DatePicker Grid.Column="1" Grid.Row="4" Margin="5,2,15,2"
+                    Focusable="False"
+                    ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                    SelectedDate="{Binding DateOfBirth, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}"/>
+        
+
+        <TextBlock Grid.Column="0" Grid.Row="5" Margin="5"  Text="House Number :" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="5" Margin="5,5,15,5" VerticalContentAlignment="Center"
+                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                 Text="{Binding HouseNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
+
+        <TextBlock Grid.Column="0" Grid.Row="6" Margin="5"  Text="Address :" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="6" Margin="5,5,15,5" VerticalContentAlignment="Center"
+                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                 Text="{Binding AddressLineOne, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
+
+        <TextBlock Grid.Column="0" Grid.Row="7" Margin="5"  Text="State :" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="7" Margin="5,5,15,5" VerticalContentAlignment="Center"
+                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                 Text="{Binding State, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
+
+        <TextBlock Grid.Column="0" Grid.Row="8" Margin="5"  Text="Country :" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="8" Margin="5,5,15,5" VerticalContentAlignment="Center"
+                 ToolTip="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}"
+                 Text="{Binding Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=true, NotifyOnValidationError=true}" />
+    </Grid>
+</UserControl>

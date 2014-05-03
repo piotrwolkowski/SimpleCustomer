@@ -1,0 +1,38 @@
+﻿<Window x:Class="SimpleCustomer.View.StatsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:VizChart="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        Title="Statistical Data" Height="400" Width="700" Loaded="Window_Loaded" WindowStyle="ToolWindow" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.ColumnSpan="2">
+            <TextBlock Text="Data type:" Margin="5" TextAlignment="Center" HorizontalAlignment="Center" Padding="5" />
+            <ComboBox Name="comboStatsType" DockPanel.Dock="Right" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                      Margin="5" SelectedItem="{Binding SelectedStatsType}"/>
+        </DockPanel>
+        <VizChart:Chart Grid.Row="1" 
+                		VerticalAlignment="Stretch" HorizontalAlignment="Stretch" BorderThickness="0">
+                            <VizChart:PieSeries DependentValuePath="Value" 
+		                    IndependentValuePath="Key" ItemsSource="{Binding StatsData}"
+		                    IsSelectionEnabled="True" />
+        </VizChart:Chart>
+        <DataGrid Grid.Column="1" Grid.Row="1" ItemsSource="{Binding StatsDataPercent}" 
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  Margin="5, 45, 10, 25">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Item1}" Width="3*" />
+                <DataGridTextColumn Binding="{Binding Item2}" Width="*"
+                                    Header="#" />
+                <DataGridTextColumn Binding="{Binding Item3}" Width="*"
+                                    Header="%" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

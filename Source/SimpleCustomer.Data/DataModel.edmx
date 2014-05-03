@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CustomersDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Gender" Type="tinyint" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Category" Type="tinyint" Nullable="false" />
+          <Property Name="HouseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddressLineOne" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerHistory">
+          <Key>
+            <PropertyRef Name="ChangedOn" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Gender" Type="tinyint" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="Category" Type="tinyint" Nullable="false" />
+          <Property Name="HouseNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AddressLineOne" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModificationType" Type="tinyint" Nullable="false" />
+          <Property Name="ChangedOn" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CustomersDataBaseModelStoreContainer">
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerHistory" EntityType="Self.CustomerHistory" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CustomersDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CustomerDb" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="CustomersDataBaseModel.Gender" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Category" Type="CustomersDataBaseModel.Category" Nullable="false" />
+          <Property Name="HouseNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLineOne" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CustomersContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CustomerDbs" EntityType="CustomersDataBaseModel.CustomerDb" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <EntitySet Name="CustomerDbHistories" EntityType="CustomersDataBaseModel.CustomerDbHistory" />
+        </EntityContainer>
+        <EnumType Name="ModificationType" UnderlyingType="Byte">
+          <Member Name="Add" Value="0" />
+          <Member Name="Remove" Value="1" />
+          <Member Name="Update" Value="2" />
+          <Member Name="Other" Value="3" />
+        </EnumType>
+        <EnumType Name="Category" UnderlyingType="Byte" a:ExternalTypeName="SimpleCustomer.Core.Category" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="Gender" UnderlyingType="Byte" a:ExternalTypeName="SimpleCustomer.Core.Gender" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="CustomerDbHistory">
+          <Key>
+            <PropertyRef Name="ChangedOn" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="CustomersDataBaseModel.Gender" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Category" Type="CustomersDataBaseModel.Category" Nullable="false" />
+          <Property Name="HouseNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressLineOne" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ModificationType" Type="CustomersDataBaseModel.ModificationType" Nullable="false" />
+          <Property Name="ChangedOn" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CustomersDataBaseModelStoreContainer" CdmEntityContainer="CustomersContext">
+          <EntitySetMapping Name="CustomerDbs">
+            <EntityTypeMapping TypeName="CustomersDataBaseModel.CustomerDb">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="AddressLineOne" ColumnName="AddressLineOne" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerDbHistories">
+            <EntityTypeMapping TypeName="CustomersDataBaseModel.CustomerDbHistory">
+              <MappingFragment StoreEntitySet="CustomerHistory">
+                <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+                <ScalarProperty Name="ModificationType" ColumnName="ModificationType" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="AddressLineOne" ColumnName="AddressLineOne" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,10 @@
+﻿<Window x:Class="SimpleCustomer.View.InfoDialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding Caption}" Height="150" Width="350" WindowStyle="ToolWindow">
+    <DockPanel>
+        <Rectangle DockPanel.Dock="Bottom" Height="60" Fill="#ECECEC"/>
+        <TextBox TextWrapping="Wrap" VerticalAlignment="Bottom" DockPanel.Dock="Top" BorderThickness="0" IsReadOnly="True"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto" Text="{Binding Text}"/>
+    </DockPanel>
+</Window>
